@@ -208,4 +208,8 @@
     <string name="hide_developer_status_summary">Hide developer status from apps</string>
     <string name="search">Search</string>
     <string name="search_apps">Search apps</string>
+
+    <!-- PIN scramble -->
+    <string name="unlock_scramble_pin_layout_title">Scramble layout</string>
+    <string name="unlock_scramble_pin_layout_summary">Scramble PIN layout when unlocking device</string>
 </resources>
