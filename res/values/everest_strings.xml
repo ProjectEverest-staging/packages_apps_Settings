@@ -83,4 +83,8 @@
 
      <!-- Summary for the top level wallpapers settings [CHAR LIMIT=NONE]-->
      <string name="wallpaper_dashboard_custom_summary">Colors, themed icons, app grid</string>
+
+     <!-- Screenshot shutter -->
+     <string name="screenshot_shutter_sound_title">Screenshot sound</string>
+
 </resources>
