@@ -72,4 +72,7 @@
      <string name="basecamp_dash_title">Everest Basecamp</string>
      <string name="basecamp_summary">Height of Customization!!</string>
 
+    <!-- Density category -->
+    <string name="density_category">Density options</string>
+
 </resources>
