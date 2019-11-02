@@ -231,4 +231,8 @@
     <string name="power_button_torch_title">Quick torch</string>
     <string name="power_button_torch_summary">When the screen is off, long-pressing power button
          will enable torch</string>
+    
+    <!-- Android debugging as root -->
+    <string name="adb_enable_root">Rooted debugging</string>
+    <string name="adb_enable_summary_root">Allow running Android debugging as root</string>
 </resources>
