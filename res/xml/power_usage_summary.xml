@@ -75,6 +75,12 @@
         android:summary="@string/battery_percentage_description"
         settings:controller="com.android.settings.display.BatteryPercentagePreferenceController" />
 
+    <!-- Battery light -->
+    <SwitchPreferenceCompat
+        android:key="battery_light_enabled"
+        android:title="@string/battery_light_title"
+        settings:controller="com.android.settings.notification.BatteryLightPreferenceController"/>
+
     <Preference
         android:key="charging_control"
         android:title="@string/charging_control_title"
