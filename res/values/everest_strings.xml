@@ -109,4 +109,6 @@
     <!-- EverestOS  Maintainer -->
     <string name="EverestOS_maintainer">Device Maintainer</string>
 
+    <!-- Radio Info -->
+    <string name="radio_info_title">Radio info</string>
 </resources>
