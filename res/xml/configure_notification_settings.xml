@@ -199,4 +199,15 @@
             android:title="@string/notification_polite_title"
             settings:controller="com.android.settings.notification.PoliteNotificationsPreferenceController" />
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/incall_category" >
+
+        <com.everest.support.preferences.SystemSettingListPreference
+            android:key="flashlight_on_call"
+            android:title="@string/flashlight_on_call_title"
+            android:entries="@array/flashlight_on_call_entries"
+            android:entryValues="@array/flashlight_on_call_values"
+            android:defaultValue="0" />
+    </PreferenceCategory>
 </PreferenceScreen>
