@@ -209,6 +209,8 @@ import com.everest.basecamp.BaseCamp;
 
 import com.android.settings.livedisplay.LiveDisplaySettings;
 
+import con.android.settings.wifi.tether.WifiTetherClientManager;
+
 public class SettingsGateway {
 
     /**
@@ -403,7 +405,8 @@ public class SettingsGateway {
             RunningServices.class.getName(),
             LiveDisplaySettings.class.getName(),
             VolumeSteps.class.getName(),
-            SleepMode.class.getName()
+            SleepMode.class.getName(),
+            WifiTetherClientManager.class.getName()
     };
 
     public static final String[] SETTINGS_FOR_RESTRICTED = {
