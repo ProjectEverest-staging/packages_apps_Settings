@@ -65,9 +65,6 @@
      <string name="storage_warning_internal">Warning: This option may not work properly or lead to
           data loss and is therefore not recommended!</string>
 
-     <!-- Summary for list to control apps that ignore battery saving restrictions -->
-     <string name="high_power_apps_summary">Battery optimization availability</string>
-
      <!-- Base Camp -->
      <string name="basecamp_dash_title">Everest Basecamp</string>
      <string name="basecamp_summary">Height of Customization!!</string>
@@ -281,4 +278,7 @@
     <!-- Charging vibration -->
     <string name="charging_sounds_nos_title">Charging sound</string>
     <string name="charging_vibro_title">Charging vibration</string>
+    
+    <!-- Summary for list to control apps that ignore battery saving restrictions -->
+    <string name="high_power_apps_summary">Battery optimization availability</string>
 </resources>
