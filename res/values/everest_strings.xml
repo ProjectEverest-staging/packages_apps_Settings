@@ -500,4 +500,8 @@
     <string name="private_dns_mode_quad9" translatable="false">Quad9 DNS</string>
     <!-- Quad9 DNS hostname -->
     <string name="private_dns_hostname_quad9" translatable="false">dns.quad9.net</string>
+
+    <!-- Game space -->
+    <string name="game_space_title">Game space</string>
+    <string name="game_space_summary">Enhance your gaming experience</string>
 </resources>
