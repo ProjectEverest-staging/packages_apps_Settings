@@ -28,12 +28,16 @@ import android.content.DialogInterface;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.provider.Settings.Global;
 import android.util.Log;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.provider.Settings.Secure;
+import android.text.format.DateFormat;
+import android.util.Log;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.loader.app.LoaderManager;
@@ -60,6 +64,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.Integer;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +99,8 @@ public class PowerUsageSummary extends PowerUsageBase
     private static final String KEY_BATTERY_TEMP = "battery_temperature";
 
     static final int MENU_STATS_RESET = Menu.FIRST + 1;
+
+    Preference mSleepMode;
 
     @VisibleForTesting
     final ContentObserver mSettingsObserver =
@@ -193,6 +201,9 @@ public class PowerUsageSummary extends PowerUsageBase
         }
         mBatteryTipPreferenceController.restoreInstanceState(icicle);
         updateBatteryTipFlag(icicle);
+
+        mSleepMode = findPreference("sleep_mode");
+        updateSleepModeSummary();
     }
 
     @Override
@@ -203,11 +214,13 @@ public class PowerUsageSummary extends PowerUsageBase
                         Global.getUriFor(Global.BATTERY_ESTIMATES_LAST_UPDATE_TIME),
                         false,
                         mSettingsObserver);
+        updateSleepModeSummary();
     }
 
     @Override
     public void onPause() {
         getContentResolver().unregisterContentObserver(mSettingsObserver);
+        updateSleepModeSummary();
         super.onPause();
     }
 
@@ -251,6 +264,62 @@ public class PowerUsageSummary extends PowerUsageBase
             .setNegativeButton(R.string.cancel, null)
             .create();
         dialog.show();
+    }
+
+    private void updateSleepModeSummary() {
+        if (mSleepMode == null) return;
+        final boolean enabled = Secure.getIntForUser(getActivity().getContentResolver(),
+                Secure.SLEEP_MODE_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+        final int mode = Secure.getIntForUser(getActivity().getContentResolver(),
+                Secure.SLEEP_MODE_AUTO_MODE, 0, UserHandle.USER_CURRENT);
+        String timeValue = Secure.getStringForUser(getActivity().getContentResolver(),
+                Secure.SLEEP_MODE_AUTO_TIME, UserHandle.USER_CURRENT);
+        if (timeValue == null || timeValue.equals("")) timeValue = "22:00,07:00";
+        final String[] time = timeValue.split(",", 0);
+        final String outputFormat = DateFormat.is24HourFormat(getContext()) ? "HH:mm" : "h:mm a";
+        final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputFormat);
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        final LocalTime sinceValue = LocalTime.parse(time[0], formatter);
+        final LocalTime tillValue = LocalTime.parse(time[1], formatter);
+        String detail;
+        switch (mode) {
+            default:
+            case 0:
+                detail = getActivity().getString(enabled
+                        ? R.string.night_display_summary_on_auto_mode_never
+                        : R.string.night_display_summary_off_auto_mode_never);
+                break;
+            case 1:
+                detail = getActivity().getString(enabled
+                        ? R.string.night_display_summary_on_auto_mode_twilight
+                        : R.string.night_display_summary_off_auto_mode_twilight);
+                break;
+            case 2:
+                if (enabled) {
+                    detail = getActivity().getString(R.string.night_display_summary_on_auto_mode_custom, tillValue.format(outputFormatter));
+                } else {
+                    detail = getActivity().getString(R.string.night_display_summary_off_auto_mode_custom, sinceValue.format(outputFormatter));
+                }
+                break;
+            case 3:
+                if (enabled) {
+                    detail = getActivity().getString(R.string.night_display_summary_on_auto_mode_custom, tillValue.format(outputFormatter));
+                } else {
+                    detail = getActivity().getString(R.string.night_display_summary_off_auto_mode_twilight);
+                }
+                break;
+            case 4:
+                if (enabled) {
+                    detail = getActivity().getString(R.string.night_display_summary_on_auto_mode_twilight);
+                } else {
+                    detail = getActivity().getString(R.string.night_display_summary_off_auto_mode_custom, sinceValue.format(outputFormatter));
+                }
+                break;
+        }
+        final String summary = getActivity().getString(enabled
+                ? R.string.sleep_mode_summary_on
+                : R.string.sleep_mode_summary_off, detail);
+        mSleepMode.setSummary(summary);
     }
 
     @Override
