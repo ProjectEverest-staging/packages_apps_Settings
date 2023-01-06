@@ -2,45 +2,46 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/everest_card"
-    android:layout_height="105dp"
-    android:elevation="0dp"
+    android:layout_height="90dp"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginBottom="10dp">
-    
- <com.google.android.material.card.MaterialCardView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         app:cardElevation="0dp"
-         app:cardCornerRadius="28dp">
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/syberia_card"
+    android:elevation="0dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="@dimen/everest_radius"
+        app:cardElevation="0dp">
 
         <com.radiant.utils.bannerHeaderView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:gravity="center"
-            android:elevation="0dp"
-            android:foreground="@drawable/wallpaper_scrim"
             android:background="@drawable/wallpaper_scrim"
             android:contentDescription="@null"
-            android:orientation="horizontal" />
+            android:elevation="0dp"
+            android:foreground="@drawable/wallpaper_scrim"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRadius" />
 
-    <LinearLayout
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <TextView
-                android:ellipsize="marquee"
                 android:id="@android:id/summary"
-                android:fadingEdge="horizontal"
+                style="@style/text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="#FFFFFF"
-                style="@style/text_style" />               
-         </LinearLayout>
-     </com.google.android.material.card.MaterialCardView>
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </FrameLayout>
