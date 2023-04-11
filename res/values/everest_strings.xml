@@ -349,4 +349,8 @@
     <string name="max_call_volume_title">Calls</string>
     <string name="max_alarm_volume_title">Alarms</string>
     <string name="steps_unit">steps</string>
+
+    <!-- Ambient wake toggles -->
+    <string name="doze_gesture_ambient_title">Show Ambient</string>
+    <string name="doze_gesture_ambient_summary">Show Ambient Display instead of fully waking the screen up</string>
 </resources>
