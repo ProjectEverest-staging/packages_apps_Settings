@@ -133,6 +133,7 @@ android_library {
         "kotlin-stdlib",
         "kotlinx_coroutines_android",
         "kotlinx_coroutines",
+        "colorpickerview",
     ],
 
     plugins: ["androidx.room_room-compiler-plugin"],
@@ -193,4 +194,9 @@ filegroup {
 android_library_import {
     name: "glide",
     aars: ["libs/glide-4.16.0.aar"],
+}
+
+android_library_import {
+    name: "colorpickerview",
+    aars: ["libs/colorpickerview-release.aar"],
 }
