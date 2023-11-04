@@ -42,6 +42,7 @@ public class PhoneNumberPreferenceController extends BasePreferenceController {
     private final TelephonyManager mTelephonyManager;
     private final SubscriptionManager mSubscriptionManager;
     private final List<Preference> mPreferenceList = new ArrayList<>();
+    private boolean mTapped = false;
 
     public PhoneNumberPreferenceController(Context context, String key) {
         super(context, key);
@@ -88,18 +89,7 @@ public class PhoneNumberPreferenceController extends BasePreferenceController {
 
     @Override
     public boolean useDynamicSliceSummary() {
-        return true;
-    }
-
-    private CharSequence getFirstPhoneNumber() {
-        final List<SubscriptionInfo> subscriptionInfoList =
-                mSubscriptionManager.getActiveSubscriptionInfoList();
-        if (subscriptionInfoList == null || subscriptionInfoList.isEmpty()) {
-            return mContext.getText(R.string.device_info_default);
-        }
-
-        // For now, We only return first result for slice view.
-        return getFormattedPhoneNumber(subscriptionInfoList.get(0));
+        return mTapped;
     }
 
     private CharSequence getPhoneNumber(int simSlot) {
@@ -108,7 +98,10 @@ public class PhoneNumberPreferenceController extends BasePreferenceController {
             return mContext.getText(R.string.device_info_default);
         }
 
-        return getFormattedPhoneNumber(subscriptionInfo);
+        if (mContext.getResources().getBoolean(R.bool.configShowDeviceSensitiveInfo) || mTapped) {
+            return getFormattedPhoneNumber(subscriptionInfo);
+        }
+        return mContext.getString(R.string.device_info_protected_single_press);
     }
 
     private CharSequence getPreferenceTitle(int simSlot) {
