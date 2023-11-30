@@ -70,4 +70,8 @@
 
     <!-- Radio Info -->
     <string name="radio_info_title">Radio info</string>
+
+    <!-- Base Camp -->
+    <string name="basecamp_dash_title">Everest Basecamp</string>
+    <string name="basecamp_summary">Height of Customization!!</string>
 </resources>
