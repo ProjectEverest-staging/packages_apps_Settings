@@ -67,4 +67,9 @@
 
      <!-- Summary for list to control apps that ignore battery saving restrictions -->
      <string name="high_power_apps_summary">Battery optimization availability</string>
+
+     <!-- Base Camp -->
+     <string name="basecamp_dash_title">Everest Basecamp</string>
+     <string name="basecamp_summary">Height of Customization!!</string>
+
 </resources>
