@@ -154,6 +154,8 @@ public class AccessibilitySettings extends DashboardFragment {
     private boolean mNeedPreferencesUpdate = false;
     private boolean mIsForeground = true;
 
+    private boolean mUpdatedInOnCreate = false;
+
     public AccessibilitySettings() {
         // Observe changes to anything that the shortcut can toggle, so we can reflect updates
         final Collection<AccessibilityShortcutController.FrameworkFeatureInfo> features =
@@ -197,12 +199,19 @@ public class AccessibilitySettings extends DashboardFragment {
         initializeAllPreferences();
         updateAllPreferences();
         registerContentMonitors();
+
+        mUpdatedInOnCreate = true;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        updateAllPreferences();
+
+        if (mUpdatedInOnCreate) {
+            mUpdatedInOnCreate = false;
+        } else {
+            updateAllPreferences();
+        }
     }
 
     @Override
