@@ -507,4 +507,9 @@ public class Settings extends SettingsActivity {
 
     // SleepMode
     public static class SleepModeActivity extends SettingsActivity {}
+
+    // Basecamp
+    public static class LockscreenActivity extends SettingsActivity { /* empty */ }
+    public static class ThemeActivity extends SettingsActivity { /* empty */ }
+    public static class FontsPickerActivity extends SettingsActivity { /* empty */ }
 }

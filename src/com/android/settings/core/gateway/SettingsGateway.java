@@ -211,6 +211,10 @@ import com.android.settings.livedisplay.LiveDisplaySettings;
 
 import con.android.settings.wifi.tether.WifiTetherClientManager;
 
+import com.everest.basecamp.categories.LockScreenSettings;
+import com.everest.basecamp.categories.ThemeSettings;
+import com.everest.basecamp.fragments.FontsPicker;
+
 public class SettingsGateway {
 
     /**
@@ -406,7 +410,10 @@ public class SettingsGateway {
             LiveDisplaySettings.class.getName(),
             VolumeSteps.class.getName(),
             SleepMode.class.getName(),
-            WifiTetherClientManager.class.getName()
+            WifiTetherClientManager.class.getName(),
+            LockScreenSettings.class.getName(),
+            ThemeSettings.class.getName(),
+            FontsPicker.class.getName(),
     };
 
     public static final String[] SETTINGS_FOR_RESTRICTED = {
@@ -456,5 +463,8 @@ public class SettingsGateway {
             Settings.BaseCampActivity.class.getName(),
             Settings.DevRunningServicesActivity.class.getName(),
             Settings.SleepModeActivity.class.getName(),
+            Settings.LockscreenActivity.class.getName(),
+            Settings.FontsPickerActivity.class.getName(),
+            Settings.ThemeActivity.class.getName(),
     };
 }
