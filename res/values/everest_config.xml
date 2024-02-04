@@ -49,4 +49,11 @@
     <string name="adaptive_playback_timeout_5_min_summary">On (5 minutes)</string>
     <string name="adaptive_playback_timeout_10_min">10 minutes</string>
     <string name="adaptive_playback_timeout_10_min_summary">On (10 minutes)</string>
+    
+    <!-- Custom info -->
+     <string name="CUSTOM_CPU_MODEL"></string>
+     <string name="CUSTOM_SCREEN_RESOLUTION"></string>
+     <string name="CUSTOM_BATTERY_INFO"></string>
+     <string name="CUSTOM_STORAGE_INFO"></string>
+     <string name="CUSTOM_RAM_INFO"></string>
 </resources>
