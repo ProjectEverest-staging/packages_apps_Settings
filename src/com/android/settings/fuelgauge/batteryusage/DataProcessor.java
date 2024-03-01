@@ -1354,7 +1354,6 @@ public final class DataProcessor {
                     }
                 }
             }
-            slotScreenOnTime = Math.min(slotDuration, getScreenOnTime(flatAppUsagePeriodList));
         }
 
         final List<BatteryDiffEntry> appEntries = new ArrayList<>();
@@ -1452,6 +1451,10 @@ public final class DataProcessor {
                         getDiffValue(
                                 currentEntry.mCachedUsageConsumePower,
                                 nextEntry.mCachedUsageConsumePower);
+            }
+            if (isSystemConsumer(selectedBatteryEntry.mConsumerType)
+                    && selectedBatteryEntry.mDrainType == BatteryConsumer.POWER_COMPONENT_SCREEN) {
+                slotScreenOnTime = foregroundUsageTimeInMs;
             }
             // Forces refine the cumulative value since it may introduce deviation error since we
             // will apply the interpolation arithmetic.
