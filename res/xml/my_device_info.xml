@@ -80,34 +80,6 @@
         android:title="@string/status_up_time"
         settings:layout="@layout/everest_dashboard_preference_top" />
 
-
-    <!-- Legal information -->
-    <Preference
-        android:fragment="com.android.settings.LegalSettings"
-        android:icon="@drawable/ic_doc"
-        android:key="legal_container"
-        android:summary="@string/legal_summary"
-        android:title="@string/legal_information"
-        settings:layout="@layout/everest_dashboard_preference_bottom" />
-
-
-    <!-- Prefs below are usually hidden -->
-    <!-- Regulatory labels -->
-    <Preference
-        android:key="regulatory_info"
-        settings:layout="@layout/everest_dashboard_preference_top"
-        android:title="@string/regulatory_labels">
-        <intent android:action="android.settings.SHOW_REGULATORY_INFO" />
-    </Preference>
-
-    <!-- Safety & regulatory manual -->
-    <Preference
-        android:key="safety_info"
-        settings:layout="@layout/everest_dashboard_preference_middle"
-        android:title="@string/safety_and_regulatory_info">
-        <intent android:action="android.settings.SHOW_SAFETY_AND_REGULATORY_INFO" />
-    </Preference>
-
     <!-- Manual -->
     <Preference
         android:key="manual"
