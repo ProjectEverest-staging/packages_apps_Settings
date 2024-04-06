@@ -11,21 +11,19 @@
  <com.google.android.material.card.MaterialCardView
          android:layout_width="match_parent"
          android:layout_height="match_parent"
-         app:cardElevation="0dp"
+         app:cardElevation="0dp"             
+         app:cardCornerRadius="28dp"
          app:strokeColor="?android:attr/textColorPrimary"
-         app:strokeWidth="4dp"
-         app:cardCornerRadius="32dp">
+         app:strokeWidth="3dp">
 
-        <com.radiant.utils.bannerHeaderView
+        <com.android.settings.WallpaperView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:gravity="center"
             android:elevation="0dp"
-            android:foreground="@drawable/wallpaper_scrim"
-            android:background="@drawable/wallpaper_scrim"
-            android:contentDescription="@null"
-            android:orientation="horizontal" />
+            android:gravity="center"
+            android:foreground="#6B000000"
+            android:orientation="vertical"/>
 
     <LinearLayout
         android:gravity="center"
