@@ -25,7 +25,7 @@ import android.util.Log;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.everest.support.preferences.CustomSeekBarPreference;
 
@@ -50,7 +50,7 @@ public class FastChargingSettings extends SettingsPreferenceFragment implements
     private static final String KEY_FAST_CHARGING = "fast_charging_switch";
     private static final String KEY_RESTRICTED_CURRENT = "restricted_current";
 
-    private SwitchPreference mFastChargingSwitch;
+    private SwitchPreferenceCompat mFastChargingSwitch;
     private CustomSeekBarPreference mRestrictedCurrentSeekBar;
 
     private IFastCharge mFastChargeService = null;
