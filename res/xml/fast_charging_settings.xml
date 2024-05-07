@@ -21,7 +21,7 @@
     android:key="fast_charging_settings"
     android:title="@string/fast_charging_title">
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:key="fast_charging_switch"
         android:title="@string/fast_charging_title"
         android:summary="@string/fast_charging_summary"/>
