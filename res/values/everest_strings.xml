@@ -575,4 +575,10 @@
     <string name="display">Display</string>
     <string name="storage">Storage</string>
     <string name="chipset">Processor</string>
+
+    <!-- Healthy Charge -->
+    <string name="health_charge_enabled_title">Healthy Charge</string>
+    <string name="health_charge_enabled_summary">Enable healthy charging notifications</string>
+    <string name="health_charge_low_threshold_title">Low battery level threshold</string>
+    <string name="health_charge_high_threshold_title">Charging level threshold</string>
 </resources>
