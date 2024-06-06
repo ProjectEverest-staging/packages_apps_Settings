@@ -21,7 +21,9 @@ import static com.android.settingslib.search.SearchIndexable.MOBILE;
 
 import android.app.ActivityManager;
 import android.app.settings.SettingsEnums;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
@@ -33,6 +35,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.VisibleForTesting;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
@@ -57,13 +60,14 @@ import com.android.settings.widget.HomepagePreferenceLayoutHelper.HomepagePrefer
 import com.android.settingslib.core.instrumentation.Instrumentable;
 import com.android.settingslib.drawer.Tile;
 import com.android.settingslib.search.SearchIndexable;
+import com.android.settingslib.widget.LayoutPreference;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 @SearchIndexable(forTarget = MOBILE)
-public class TopLevelSettings extends DashboardFragment implements SplitLayoutListener,
+public class TopLevelSettings extends DashboardFragment implements SplitLayoutListener, View.OnClickListener,
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     private static final String TAG = "TopLevelSettings";
@@ -78,6 +82,9 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     private boolean mFirstStarted = true;
     private ActivityEmbeddingController mActivityEmbeddingController;
     private boolean gAppsExists;
+
+    private LayoutPreference mDashboardHeader;
+    private LinearLayout mAboutCard, mBaseCampCard;
 
     public TopLevelSettings() {
         final Bundle args = new Bundle();
@@ -175,6 +182,11 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
         super.onCreate(icicle);
         mIsEmbeddingActivityEnabled =
                 ActivityEmbeddingUtils.isEmbeddingActivityEnabled(getContext());
+    mDashboardHeader = findPreference("dashboard_header");
+    mAboutCard = mDashboardHeader.findViewById(R.id.dashboard_about);
+    mBaseCampCard = mDashboardHeader.findViewById(R.id.dashboard_basecamp);
+    mAboutCard.setOnClickListener(this);
+    mBaseCampCard.setOnClickListener(this);
         if (!mIsEmbeddingActivityEnabled) {
             return;
         }
@@ -283,10 +295,6 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_bottom);
             } else if (key.equals("top_level_accounts") && gAppsExists){
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_middle);
-            } else if (key.equals("top_level_basecamp")){
-                preference.setLayoutResource(R.layout.everest_dashboard_preference_single);
-            } else if (key.equals("top_level_about_device")){
-                preference.setLayoutResource(R.layout.custom_dashboard_top);
             } else {
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_bottom);
             }
@@ -360,6 +368,22 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
             }
         });
     }
+
+    @Override
+	public void onClick(View view) {
+		if (view == mAboutCard) {
+			setClickActivity("MyDeviceInfoActivity");
+		} else if (view == mBaseCampCard) {
+            setClickActivity("BaseCampActivity");
+		}
+	}
+
+	private void setClickActivity(String activity) {
+		Context context = getContext();
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$" + activity));
+		context.startActivity(intent);
+	}
 
     /** Returns a {@link TopLevelHighlightMixin} that performs highlighting */
     public TopLevelHighlightMixin getHighlightMixin() {

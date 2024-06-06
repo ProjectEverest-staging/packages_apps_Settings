@@ -20,6 +20,12 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:key="top_level_settings">
 
+    <com.android.settingslib.widget.LayoutPreference
+        android:layout="@layout/dashboard_header"
+        android:key="dashboard_header"
+        android:order="-170"
+        settings:controller="com.android.settings.homepage.DashboardHeaderController" />
+
     <com.android.settings.widget.HomepagePreference
         android:fragment="com.android.settings.network.NetworkDashboardFragment"
         android:icon="@drawable/ic_settings_wireless"
@@ -49,22 +55,6 @@
         android:summary="@string/connected_devices_dashboard_default_summary"
         settings:highlightableMenuKey="@string/menu_key_connected_devices"
         settings:controller="com.android.settings.connecteddevice.TopLevelConnectedDevicesPreferenceController"/>
-    <com.android.settings.widget.HomepagePreference
-        android:fragment="com.android.settings.deviceinfo.aboutphone.MyDeviceInfoFragment"
-        android:key="top_level_about_device"
-        android:order="-180"
-        android:title="@string/about_settings"
-        android:summary="@string/summary_placeholder"
-        settings:highlightableMenuKey="@string/menu_key_about_device"
-        settings:controller="com.android.settings.deviceinfo.aboutphone.TopLevelAboutDevicePreferenceController"/>
-
-    <com.android.settings.widget.HomepagePreference
-        android:key="top_level_basecamp"
-        android:title="@string/basecamp_dash_title"
-        android:summary="@string/basecamp_summary"
-        android:icon="@drawable/ic_settings_everest"
-        android:order="-170"
-        android:fragment="com.everest.basecamp.BaseCamp"/>
 
     <com.android.settings.widget.HomepagePreference
         android:fragment="com.android.settings.DisplaySettings"
