@@ -96,7 +96,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
 
     @Override
     protected int getPreferenceScreenResId() {
-        return R.xml.top_level_settings;
+        return R.xml.top_level_settings_custom;
     }
 
     @Override
@@ -330,7 +330,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     class EverestSpanSizeOP extends GridLayoutManager.SpanSizeLookup {
 		@Override
 		public int getSpanSize(int position) {
-		    if (position == 1 || position == 2) {
+		    if (position == 0 || position == 1) {
 				return 1;
 			} else {
 				return 2;
@@ -477,7 +477,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.top_level_settings) {
+            new BaseSearchIndexProvider(R.xml.top_level_settings_custom) {
 
                 @Override
                 protected boolean isPageSearchEnabled(Context context) {
