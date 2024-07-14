@@ -38,6 +38,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.window.embedding.ActivityEmbeddingController;
 import androidx.window.embedding.SplitController;
@@ -70,6 +71,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     private static final String KEY_BASECAMP = "top_level_basecamp";
     private static final String SAVED_HIGHLIGHT_MIXIN = "highlight_mixin";
     private static final String PREF_KEY_SUPPORT = "top_level_support";
+    private static final String KEY_TOP_LAYOUT = "top_about_blur";
 
     private boolean mIsEmbeddingActivityEnabled;
     private TopLevelHighlightMixin mHighlightMixin;
@@ -95,7 +97,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
 
     @Override
     protected int getPreferenceScreenResId() {
-        return R.xml.top_level_settings;
+        return R.xml.top_level_settings_custom;
     }
 
     @Override
@@ -283,10 +285,12 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_bottom);
             } else if (key.equals("top_level_accounts") && gAppsExists){
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_middle);
-            } else if (key.equals("top_level_basecamp")){
-                preference.setLayoutResource(R.layout.everest_dashboard_preference_single);
             } else if (key.equals("top_level_about_device")){
-                preference.setLayoutResource(R.layout.custom_dashboard_top);
+                preference.setLayoutResource(R.layout.everest_cardview_single_left);
+            } else if (key.equals("top_level_basecamp")){
+                preference.setLayoutResource(R.layout.everest_cardview_single_right);
+            } else if (key.equals("top_about_blur")){
+                preference.setLayoutResource(R.layout.top_about_blur);
             } else {
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_bottom);
             }
@@ -320,9 +324,22 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
             Bundle savedInstanceState) {
         RecyclerView recyclerView = super.onCreateRecyclerView(inflater, parent,
                 savedInstanceState);
-        recyclerView.setPadding(mPaddingHorizontal, 0, mPaddingHorizontal, 0);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+		layoutManager.setSpanSizeLookup(new EverestSpanSizeOP());
+		recyclerView.setLayoutManager(layoutManager);
         return recyclerView;
     }
+
+    class EverestSpanSizeOP extends GridLayoutManager.SpanSizeLookup {
+		@Override
+		public int getSpanSize(int position) {
+		    if (position == 1 || position == 2) {
+				return 1;
+			} else {
+				return 2;
+			}
+		}
+	}
 
     /** Sets the horizontal padding */
     public void setPaddingHorizontal(int padding) {
@@ -463,7 +480,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     }
 
     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
-            new BaseSearchIndexProvider(R.xml.top_level_settings) {
+            new BaseSearchIndexProvider(R.xml.top_level_settings_custom) {
 
                 @Override
                 protected boolean isPageSearchEnabled(Context context) {
