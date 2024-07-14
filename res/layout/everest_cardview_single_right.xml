@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="160.0dip"
-    android:layout_marginStart="16.0dip"
-    android:layout_marginTop="4.0dip"
-    android:layout_marginEnd="5.0dip"
-    android:layout_marginBottom="4.0dip"
+    android:layout_height="130.0dip"
+    android:layout_marginStart="5.0dip"
+    android:layout_marginTop="10.0dip"
+    android:layout_marginEnd="16.0dip"
+    android:layout_marginBottom="10.0dip"
     android:background="@drawable/syberia_card"
     android:gravity="start|center"
     android:orientation="vertical"
@@ -18,7 +19,6 @@
         android:id="@android:id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:backgroundTint="?android:colorPrimary"
         android:padding="8.0dip"
         android:tint="?android:attr/colorAccent" />
@@ -27,19 +27,18 @@
         android:id="@android:id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="10.0dip"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="start|center"
         android:textColor="?android:textColorPrimary"
         android:textSize="18.0sp" />
 
     <TextView
         android:id="@android:id/summary"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:gravity="center"
+        android:gravity="start"
         android:textColor="?android:textColorSecondary"
         android:textSize="14.0sp" />
 </LinearLayout>
