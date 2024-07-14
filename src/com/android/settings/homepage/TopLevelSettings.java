@@ -267,27 +267,27 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
 
             String key = preference.getKey();
             if (key.equals("top_level_network")
-            	|| key.equals("top_level_display")
+                || key.equals("top_level_sound")
             	|| key.equals("top_level_apps")
             	|| key.equals("top_level_accessibility")
                 || key.equals("top_level_system")){
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_top);
             } else if (key.equals("top_level_battery")
-              || key.equals("top_level_wallpaper")
             	|| key.equals("top_level_security")
             	|| key.equals("top_level_privacy")
             	|| key.equals("top_level_safety_center")
             	|| key.equals("top_level_wellbeing")
-            	|| key.equals("top_level_location")
-            	|| key.equals("top_level_notifications")){
+            	|| key.equals("top_level_location")){
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_middle);
             } else if ("top_level_google".equals(key)){
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_bottom);
             } else if (key.equals("top_level_accounts") && gAppsExists){
                 preference.setLayoutResource(R.layout.everest_dashboard_preference_middle);
-            } else if (key.equals("top_level_about_device")){
+            } else if (key.equals("top_level_about_device")
+                || key.equals("top_level_display")){
                 preference.setLayoutResource(R.layout.everest_cardview_single_left);
-            } else if (key.equals("top_level_basecamp")){
+            } else if (key.equals("top_level_basecamp")
+                || key.equals("top_level_wallpaper")){
                 preference.setLayoutResource(R.layout.everest_cardview_single_right);
             } else if (key.equals("top_about_blur")){
                 preference.setLayoutResource(R.layout.top_about_blur);
@@ -333,7 +333,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     class EverestSpanSizeOP extends GridLayoutManager.SpanSizeLookup {
 		@Override
 		public int getSpanSize(int position) {
-		    if (position == 1 || position == 2) {
+		    if (position == 1 || position == 2 || position == 3 || position == 4) {
 				return 1;
 			} else {
 				return 2;
